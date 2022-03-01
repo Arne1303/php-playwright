@@ -1,6 +1,6 @@
 ### Php Playwright Docker image
 
-This docker image allows easy testing of php applications using the internal dev server and [Playwright](https://playwright.dev) e2e tests.
+This docker image allows easy testing of php applications using the internal dev server and [Playwright](https://playwright.dev) e2e tests. The image comes with php8.1, composer, npm and playwright preinstalled.
 
 
 ### Playwright Configuration (Laravel)
