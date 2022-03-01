@@ -13,8 +13,7 @@ playwright:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - npm install --pure-lockfile
     - npm run dev
-    - mysql --host="${MYSQL_HOST}" --user="${MYSQL_USER}" --password="${MYSQL_PASSWORD}" "${MYSQL_DATABASE}" < ${MYSQL_DATABASE}.sql
-    - php artisan migrate
+    - php artisan migrate:fresh --force
     - php artisan db:seed
     - npx playwright -V
   # Running playwright test and exporting junit report
