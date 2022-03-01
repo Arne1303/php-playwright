@@ -33,5 +33,3 @@ RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
 WORKDIR /app-dir
-
-CMD npx playwright test
