@@ -1,46 +1,29 @@
-FROM ubuntu:22.04
-ARG DEBIAN_FRONTEND=noninteractive
-
-# Bash & apache setup
-SHELL ["/bin/bash", "-c"]
-
-RUN mkdir app-dir
+FROM mcr.microsoft.com/playwright:v1.19.0-focal
 RUN apt update
+
+# Adding php repository
+RUN apt install software-properties-common -y
+RUN add-apt-repository ppa:ondrej/php
+
+# Installing php
 RUN apt install -y \
+    libzip-dev \
+    mysql-client \
 	php8.1 \
-	git \
-	yarn \
-	libzip-dev \
-	nodejs \
-	mysql-client \
-	php-mysql \
-	php-gd \
-	php-fileinfo \
-	php-simplexml \
-	php-mbstring \
-	php-dom \
-	php-zip \
-	php-curl \
-	npm
+	php8.1-mysql \
+	php8.1-gd \
+	php8.1-fileinfo \
+	php8.1-simplexml \
+	php8.1-mbstring \
+	php8.1-dom \
+	php8.1-zip \
+	php8.1-curl
 
-RUN apt install -y --no-install-recommends git openssh-client
-RUN npm install -g yarn
-
+# Clearing cache
 RUN rm -rf /var/lib/apt/lists/*
-RUN adduser pwuser
 
-ENV PLAYWRIGHT_BROWSERS_PATH=/playwright-browsers
-
-RUN mkdir /playwright-browsers && \
-    mkdir /playwright-browser-downloader && \
-    cd /playwright-browser-downloader && \
-    npm init -y && npm i @playwright/test && \
-    npx playwright install --with-deps && \
-    rm -rf playwright-browser-downloader && \
-    chmod -R 777 /playwright-browsers
-
+# Installing composer, just in case someone needs it
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
