@@ -22,7 +22,8 @@ RUN apt install -y \
 	php-dom \
 	php-zip \
 	php-curl \
-	npm
+	npm \
+    ttf-mscorefonts-installer
 
 RUN apt install -y --no-install-recommends git openssh-client
 RUN npm install -g yarn
