@@ -9,6 +9,7 @@ Possible Playwright Configuration:
 ```ts
 const config: PlaywrightTestConfig = {
     /* ... */
+    outputDir: "test-results",
     webServer: {
         command: "php artisan serve --port=80 > php-server.log", // Server output will be saved in php-server.log
         reuseExistingServer: !process.env.CI,
@@ -28,6 +29,7 @@ Possible Playwright Configuration:
 ```ts
 const config: PlaywrightTestConfig = {
     /* ... */
+    outputDir: "test-results",
     webServer: {
         command: "php -S localhost:80 > php-server.log", // Server output will be saved in php-server.log
         reuseExistingServer: !process.env.CI,
