@@ -1,5 +1,6 @@
 FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
+ARG TZ=Europe/Belfast
 
 # Bash & apache setup
 SHELL ["/bin/bash", "-c"]
