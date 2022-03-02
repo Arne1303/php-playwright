@@ -19,6 +19,8 @@ RUN apt install -y \
 	php8.1-zip \
 	php8.1-curl
 
+RUN npx playwright install --with-deps
+
 # Clearing cache
 RUN rm -rf /var/lib/apt/lists/*
 
