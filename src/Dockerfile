@@ -1,19 +1,13 @@
-FROM ubuntu:22.04
-ARG DEBIAN_FRONTEND=noninteractive
-ARG TZ=Europe/Belfast
+FROM ubuntu:mcr.microsoft.com/playwright:v1.19.0-focal
 
-# Bash & apache setup
-SHELL ["/bin/bash", "-c"]
+# Adding php repository
+RUN apt install software-properties-common -y
+RUN add-apt-repository ppa:ondrej/php
 
-RUN mkdir app-dir
+# Installing php
 RUN apt update
 RUN apt install -y \
 	php8.1 \
-	git \
-	yarn \
-	libzip-dev \
-	nodejs \
-	mysql-client \
 	php-mysql \
 	php-gd \
 	php-fileinfo \
@@ -22,27 +16,11 @@ RUN apt install -y \
 	php-dom \
 	php-zip \
 	php-curl \
-	npm \
-    ttf-mscorefonts-installer
 
-RUN apt install -y --no-install-recommends git openssh-client
-RUN npm install -g yarn
-
-RUN adduser pwuser
-
-ENV PLAYWRIGHT_BROWSERS_PATH=/playwright-browsers
-
-RUN mkdir /playwright-browsers && \
-    mkdir /playwright-browser-downloader && \
-    cd /playwright-browser-downloader && \
-    npm init -y && npm i @playwright/test && \
-    npx playwright install --with-deps && \
-    rm -rf playwright-browser-downloader && \
-    chmod -R 777 /playwright-browsers && \
-    npx playwright install-deps
-
+# Clearing cache
 RUN rm -rf /var/lib/apt/lists/*
 
+# Installing composer, just in case someone needs it
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
