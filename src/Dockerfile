@@ -1,4 +1,4 @@
-FROM ubuntu:mcr.microsoft.com/playwright:v1.19.0-focal
+FROM mcr.microsoft.com/playwright:v1.19.0-focal
 
 # Adding php repository
 RUN apt install software-properties-common -y
