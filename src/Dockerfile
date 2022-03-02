@@ -1,11 +1,11 @@
 FROM mcr.microsoft.com/playwright:v1.19.0-focal
+RUN apt update
 
 # Adding php repository
 RUN apt install software-properties-common -y
 RUN add-apt-repository ppa:ondrej/php
 
 # Installing php
-RUN apt update
 RUN apt install -y \
 	php8.1 \
 	php-mysql \
