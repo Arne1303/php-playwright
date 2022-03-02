@@ -8,14 +8,14 @@ RUN add-apt-repository ppa:ondrej/php
 # Installing php
 RUN apt install -y \
 	php8.1 \
-	php-mysql \
-	php-gd \
-	php-fileinfo \
-	php-simplexml \
-	php-mbstring \
-	php-dom \
-	php-zip \
-	php-curl
+	php8.1-mysql \
+	php8.1-gd \
+	php8.1-fileinfo \
+	php8.1-simplexml \
+	php8.1-mbstring \
+	php8.1-dom \
+	php8.1-zip \
+	php8.1-curl
 
 # Clearing cache
 RUN rm -rf /var/lib/apt/lists/*
