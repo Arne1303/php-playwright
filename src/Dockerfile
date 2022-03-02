@@ -7,6 +7,8 @@ RUN add-apt-repository ppa:ondrej/php
 
 # Installing php
 RUN apt install -y \
+    libzip-dev \
+    mysql-client \
 	php8.1 \
 	php8.1-mysql \
 	php8.1-gd \
