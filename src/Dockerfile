@@ -15,7 +15,7 @@ RUN apt install -y \
 	php-mbstring \
 	php-dom \
 	php-zip \
-	php-curl \
+	php-curl
 
 # Clearing cache
 RUN rm -rf /var/lib/apt/lists/*
