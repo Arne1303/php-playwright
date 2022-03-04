@@ -1,7 +1,7 @@
 playwright:
   stage: testing
   # Using this docker image
-  image: ghcr.io/arne1303/php-playwright:main
+  image: ghcr.io/arne1303/php-playwright-docker:main
   # database services when required
   services:
     - name: ${MARIA_DB_IMAGE}
