@@ -39,3 +39,11 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Push with Tag
+        id: docker_build_tag
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: src
+          push: true
+          tag: ${{ github.sha }}
+
