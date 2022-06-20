@@ -45,5 +45,5 @@ jobs:
         with:
           context: src
           push: true
-          tag: ${{ github.sha }}
+          tags: ${{ github.sha }}
 
