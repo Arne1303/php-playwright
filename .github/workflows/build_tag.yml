@@ -29,5 +29,5 @@ jobs:
         with:
           context: src
           push: true
-          tags: ${{ GITHUB_REF }}
-          labels: ${{ GITHUB_REF }}
+          tags: ${{ env.GITHUB_REF }}
+          labels: ${{ env.GITHUB_REF }}
