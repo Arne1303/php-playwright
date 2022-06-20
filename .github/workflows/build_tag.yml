@@ -23,16 +23,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract latest tag
-        id: meta
-        run: |
-          GIT_TAG=$GITHUB_REF_NAME
-
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: src
           push: true
-          tags: ${{ env.GIT_TAG }}
-          labels: ${{ env.GIT_TAG }}
+          tags: ${{ GITHUB_REF }}
+          labels: ${{ GITHUB_REF }}
